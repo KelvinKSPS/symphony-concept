@@ -17,6 +17,8 @@ import com.symphony.page.SignUpObject;
 
 public class TempEmailObject extends GenericPageObject {
 
+	public final static String pageUrl = "https://www.tempinbox.xyz/mailbox/";
+
 	@FindBy(id = "current-id")
 	WebElement copyEmailButton;
 
@@ -26,29 +28,36 @@ public class TempEmailObject extends GenericPageObject {
 	@FindBy(xpath = "//*[contains(text(), 'Welcome to Symphony Email Verification.')]")
 	WebElement emailSubject;
 
-	public final static String pageUrl = "https://www.tempinbox.xyz/mailbox/";
 
 	public TempEmailObject(WebDriver driver) {
 		super(driver, pageUrl);
 		PageFactory.initElements(driver, this);
 	}
 
+	// get email used for testing
 	public String getEmail() {
 		return copyEmailButton.getAttribute("value");
 	};
 
+	// submit pin for Two-Factory-Authentications
 	public void submitPin(String pin, SignUpObject signUpPage) {
 		WebElement pinField = signUpPage.getPinField();
 		pinField.sendKeys(pin);
 		pinField.submit();
 	}
 
+	// submit phone number for signing Up
 	public void submitPhone(String phone, SignUpObject signUpPage) {
 		WebElement phoneField = signUpPage.getPhoneField();
 		phoneField.sendKeys(phone);
 		phoneField.submit();
 	}
 
+	/**
+	 * Check if email was received and click on it
+	 * @param timeout - max time for getting attributes
+	 * @param signInPage - object to be used, since the page will be opened from email
+	 */
 	public void validateEmail(int timeout, SignInObject signInPage) {
 		new WebDriverWait(this.driver, timeout).until(ExpectedConditions.elementToBeClickable(emailSubject));
 		try {
@@ -59,17 +68,14 @@ public class TempEmailObject extends GenericPageObject {
 		}
 		
 		new WebDriverWait(super.driver, timeout).until(ExpectedConditions.visibilityOf(emailConfirmation));
-
 		super.driver.get(emailConfirmation.getAttribute("href"));
-
 		new WebDriverWait(super.driver, timeout).until(ExpectedConditions.visibilityOf(signInPage.getEmailField()));
 
 	};
 
 	public TempEmailObject open() {
 		super.open();
-		this.verifyPageLoaded();
-		return this;
+		return this.verifyPageLoaded();
 	}
 
 	/**

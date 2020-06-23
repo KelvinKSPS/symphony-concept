@@ -5,7 +5,7 @@ package Symphony.WebApp;
 
 import org.junit.Test;
 
-import com.symphony.framework.BrowserFactory;
+import com.symphony.framework.BrowserStrategy;
 import com.symphony.page.ResetPasswordObject;
 import com.symphony.page.SignInObject;
 import org.openqa.selenium.WebDriver;
@@ -16,14 +16,14 @@ import org.junit.After;
 import org.junit.Before;
 
 public class SignInPageTests {
-	public BrowserFactory browser;
+	public BrowserStrategy browser;
 	public SignInObject signInPage;
 	public ResetPasswordObject resetPasswordPage;
 	public WebDriver webdriver;
 	
 	@Before
 	public void preconditions() throws Exception {
-		browser = new BrowserFactory("chrome");
+		browser = new BrowserStrategy(System.getProperty("browser"));
 		webdriver = browser.getDriver();
     	signInPage = new SignInObject(webdriver);
     	resetPasswordPage = new ResetPasswordObject(webdriver);
@@ -40,21 +40,21 @@ public class SignInPageTests {
     public void Should_DisplayErrorMessage_When_LoginWithoutParameters() throws Exception {
     	signInPage.open();
     	signInPage.clickSignInToAccountButton();
-    	assertEquals(signInPage.getErrorMessage().getText(), "All fields are required.");
+    	assertEquals(signInPage.getErrorMessage(), "All fields are required.");
     }
     
     @Test 
     public void Should_DisplayFrenchMessage_When_SelectingLanguageAsFrench() throws Exception {
     	signInPage.open();
     	signInPage.selectLanguage("french");
-    	assertEquals(signInPage.languageLabel().getText().replace("\n", ""), "Choix de la langue");
+    	assertEquals(signInPage.languageLabelContent(), "Choix de la langue");
     }
     
     @Test 
     public void Should_DisplayJapaneseMessage_When_SelectingLanguageAsJapanese() throws Exception {
     	signInPage.open();
     	signInPage.selectLanguage("japanese");
-    	assertEquals(signInPage.languageLabel().getText().replace("\n", ""), "言語の設定");
+    	assertEquals(signInPage.languageLabelContent(), "言語の設定");
     }
     
     @Test 
@@ -62,7 +62,7 @@ public class SignInPageTests {
     	signInPage.open();
     	signInPage.selectLanguage("french");
     	signInPage.selectLanguage("english");
-    	assertEquals(signInPage.languageLabel().getText().replace("\n", ""), "Language Preference");
+    	assertEquals(signInPage.languageLabelContent(), "Language Preference");
     }
     
     @After

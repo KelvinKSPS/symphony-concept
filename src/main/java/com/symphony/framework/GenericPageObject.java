@@ -32,4 +32,7 @@ public abstract class GenericPageObject {
 		return this;
 	}
 	
+	public String getCurrentUrl() {
+		return this.driver.getCurrentUrl();
+	}
 }

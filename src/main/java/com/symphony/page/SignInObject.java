@@ -20,9 +20,9 @@ public class SignInObject extends GenericPageObject {
 	private final static String pageUrl = "https://my.symphony.com";
 
 	private Map<String, String> data;
-	public WebDriver driver;
-	private int timeout = 15;
-
+	private String successUrl = "https://my.symphony.com/client/index.html?";
+	
+	
 	@FindBy(css = "#sysMsg > span.message")
 	private WebElement errorMessage;
 	
@@ -32,14 +32,42 @@ public class SignInObject extends GenericPageObject {
 	@FindBy(id = "signin-email")
 	private WebElement emailField;
 	
-	public WebElement getEmailField() {
-		return emailField;
-	}
-	
 	@FindBy(id = "signin-password")
 	private WebElement passwordField;
 	
-	private String successUrl = "https://my.symphony.com/client/index.html?";
+	@FindBy(className = "menu-tooltip-language-selected-language")
+	private WebElement menuToolTipLanguage;
+
+	@FindBy(css = "a[href='#forgot-password']")
+	@CacheLookup
+	private WebElement forgotYourPassword;
+
+	
+	@FindBy(id = "signin-password")
+	@CacheLookup
+	private WebElement passwordRequired;
+
+	@FindBy(id = "signin-remember")
+	@CacheLookup
+	private WebElement rememberMyEmailAddress;
+
+	@FindBy(name = "signin-submit")
+	@CacheLookup
+	private WebElement signInToAccount;
+
+	
+	@FindBy(css = "a[href='#signup']")
+	@CacheLookup
+	private WebElement signUp;
+
+	@FindBy(id = "signin-email")
+	@CacheLookup
+	private WebElement usernameRequired;
+
+	
+	public WebElement getEmailField() {
+		return emailField;
+	}
 	
 	public String getSuccessUrl() {
 		return successUrl;
@@ -56,13 +84,15 @@ public class SignInObject extends GenericPageObject {
 		return languageLabel;
 	}
 	
-	public WebElement getErrorMessage() {
-		return errorMessage;
+	public String getErrorMessage() {
+		return errorMessage.getText();
 	}
 	
-	@FindBy(className = "menu-tooltip-language-selected-language")
-	private WebElement menuToolTipLanguage;
 	
+	/**
+	 * Select id by language
+	 * @param language
+	 */
 	public SignInObject selectLanguage(String language) {
 		menuToolTipLanguage.click();
 		String id = null;
@@ -77,37 +107,11 @@ public class SignInObject extends GenericPageObject {
 		super.driver.findElement(By.id(id)).click();
 		return this;		
 	}
-
-	@FindBy(css = "a[href='#forgot-password']")
-	@CacheLookup
-	private WebElement forgotYourPassword;
-
-	private final String pageLoadedText = "Symphony";
-
-	@FindBy(id = "signin-password")
-	@CacheLookup
-	private WebElement passwordRequired;
-
-	@FindBy(id = "signin-remember")
-	@CacheLookup
-	private WebElement rememberMyEmailAddress;
-
-	@FindBy(name = "signin-submit")
-	@CacheLookup
-	private WebElement signInToAccount;
-
+	
 	public WebElement getSignInToAccount() {
 		return signInToAccount;
 	}
-
-	@FindBy(css = "a[href='#signup']")
-	@CacheLookup
-	private WebElement signUp;
-
-	@FindBy(id = "signin-email")
-	@CacheLookup
-	private WebElement usernameRequired;
-
+	
 	public SignInObject(WebDriver driver) {
 		super(driver, pageUrl);
 		this.driver = driver;
@@ -119,10 +123,6 @@ public class SignInObject extends GenericPageObject {
 		this.data = data;
 	}
 
-	public SignInObject(WebDriver driver, Map<String, String> data, int timeout) {
-		this(driver, data);
-		this.timeout = timeout;
-	}
 
 	public SignInObject open() {
 		super.open();
@@ -260,7 +260,7 @@ public class SignInObject extends GenericPageObject {
 	 * @return the SignInObject class instance.
 	 */
 	public SignInObject verifyPageLoaded() {
-		new WebDriverWait(super.driver, 5).until(ExpectedConditions.elementToBeClickable(forgotYourPassword));
+		new WebDriverWait(super.driver, 10).until(ExpectedConditions.elementToBeClickable(forgotYourPassword));
 		return this;
 	}
 
@@ -269,12 +269,15 @@ public class SignInObject extends GenericPageObject {
 	 *
 	 * @return the SignInObject class instance.
 	 */
-	public SignInObject verifyPageUrl() {
-		(new WebDriverWait(super.driver, timeout)).until(new ExpectedCondition<Boolean>() {
-			public Boolean apply(WebDriver d) {
-				return d.getCurrentUrl().contains(pageUrl);
-			}
-		});
-		return this;
+	public boolean verifyPageUrl() {
+		this.verifyPageLoaded();
+		return super.getCurrentUrl().contains(pageUrl);
+	}
+
+	/**
+	 * get text without line delimiters
+	 */
+	public String languageLabelContent() {
+		return this.languageLabel().getText().replace("\n", "");
 	}
 }

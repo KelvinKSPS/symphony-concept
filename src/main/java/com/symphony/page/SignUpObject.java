@@ -16,58 +16,35 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class SignUpObject extends GenericPageObject {
+	
+	private static final String pageUrl = "https://my.symphony.com/#signup";
+	
 	private Map<String, String> data;
-	private WebDriver driver;
-	private int timeout = 15;
 
 	@FindBy(xpath = "//button[@class=\'button green invalid']")
 	private WebElement nextInvalid;
-	
+
 	@FindBy(xpath = "//button[@class=\'button green']")
 	private WebElement next;
-	
+
 	@FindBy(xpath = "//*[contains(text(), 'Invite Your Team')]")
 	WebElement secondStepScreenHeader;
-	
+
 	@FindBy(xpath = "//*[contains(text(), 'Skip')]")
 	WebElement SkipButton;
-	
+
 	@FindBy(xpath = "//*[contains(text(), 'Please Verify Your Email')]")
 	WebElement emailHeader;
-	
+
 	@FindBy(xpath = "//*[contains(text(), 'Two Factor Authentication Setup')]")
 	WebElement smsHeader;
-	
+
 	@FindBy(id = "mobile-phone-number")
 	WebElement phoneField;
-	
+
 	@FindBy(id = "mobile-verification-code")
 	WebElement pinField;
 	
-	public WebElement getPinField() {
-		return pinField;
-	}
-
-	public WebElement getPhoneField() {
-		return phoneField;
-	}
-	
-	public WebElement getSmsHeader() {
-		return smsHeader;
-	}
-
-	public WebElement getNextInvalid() {
-		return nextInvalid;
-	}
-
-	public WebElement getNext() {
-		return next;
-	}
-
-	private final String pageLoadedText = "one letter, number, special character and one letter in uppercase";
-
-	private static final String pageUrl = "https://my.symphony.com/#signup";
-
 	@FindBy(css = "a[href='https://symphony.com/legal/privacy']")
 	@CacheLookup
 	private WebElement privacyPolicy;
@@ -95,15 +72,36 @@ public class SignUpObject extends GenericPageObject {
 	@FindBy(css = "a[href='https://symphony.com/legal/public-eula']")
 	@CacheLookup
 	private WebElement termsAndConditions;
-	
+
 	@FindBy(xpath = "//li[@class=\'passcode-low']")
 	private WebElement lowercaseDisabled;
-	
+
 	@FindBy(xpath = "//li[@class=\'passcode-low checked']")
 	private WebElement lowercaseEnabled;
-	
+
 	@FindBy(xpath = "//li[@class=\'passcode-cap']")
 	private WebElement uppercaseDisabled;
+
+
+	public WebElement getPinField() {
+		return pinField;
+	}
+
+	public WebElement getPhoneField() {
+		return phoneField;
+	}
+
+	public WebElement getSmsHeader() {
+		return smsHeader;
+	}
+
+	public WebElement getNextInvalid() {
+		return nextInvalid;
+	}
+
+	public WebElement getNext() {
+		return next;
+	}
 	
 	public WebElement getSignIn() {
 		return signIn;
@@ -150,16 +148,16 @@ public class SignUpObject extends GenericPageObject {
 
 	@FindBy(xpath = "//li[@class=\'passcode-spec']")
 	private WebElement specialcaseDisabled;
-	
+
 	@FindBy(xpath = "//li[@class=\'passcode-spec checked']")
 	private WebElement specialcaseEnabled;
-	
+
 	@FindBy(xpath = "//li[@class=\'passcode-num']")
 	private WebElement numberDisabled;
-	
+
 	@FindBy(xpath = "//li[@class=\'passcode-num checked']")
 	private WebElement numberEnabled;
-	
+
 	public SignUpObject(WebDriver driver) {
 		super(driver, pageUrl);
 		this.driver = driver;
@@ -169,11 +167,6 @@ public class SignUpObject extends GenericPageObject {
 	public SignUpObject(WebDriver driver, Map<String, String> data) {
 		this(driver);
 		this.data = data;
-	}
-
-	public SignUpObject(WebDriver driver, Map<String, String> data, int timeout) {
-		this(driver, data);
-		this.timeout = timeout;
 	}
 
 	/**
@@ -186,13 +179,18 @@ public class SignUpObject extends GenericPageObject {
 		new WebDriverWait(super.driver, 5).until(ExpectedConditions.elementToBeClickable(SkipButton));
 		return this;
 	}
-	
+
 	/**
 	 * Click on Skip Button
 	 */
 	public SignUpObject clickSkipButton() {
 		SkipButton.click();
-		new WebDriverWait(super.driver, 10).until(ExpectedConditions.elementToBeClickable(emailHeader));
+		try {
+			new WebDriverWait(super.driver, 10).until(ExpectedConditions.elementToBeClickable(emailHeader));
+		} catch (Exception ex) {
+			System.out.println("Exception... One more try");
+			SkipButton.click();
+		}
 		return this;
 	}
 
@@ -225,7 +223,7 @@ public class SignUpObject extends GenericPageObject {
 		termsAndConditions.click();
 		return this;
 	}
-	
+
 	public SignUpObject open() {
 		super.open();
 		this.verifyPageLoaded();
@@ -261,7 +259,7 @@ public class SignUpObject extends GenericPageObject {
 	 * @return the SignUpObject class instance.
 	 */
 	public SignUpObject setSignUpWithYourFirstName() {
-		return setSignUpWithYourFirstName(data.get("SIGN_UP_WITH_YOUR_DETAILS_1"));
+		return setSignUpWithYourFirstName(data.get("first_name"));
 	}
 
 	/**
@@ -269,8 +267,8 @@ public class SignUpObject extends GenericPageObject {
 	 *
 	 * @return the SignUpObject class instance.
 	 */
-	public SignUpObject setSignUpWithYourFirstName(String signUpWithYourDetails1Value) {
-		signUpWithYourFirstName.sendKeys(signUpWithYourDetails1Value);
+	public SignUpObject setSignUpWithYourFirstName(String firstName) {
+		signUpWithYourFirstName.sendKeys(firstName);
 		return this;
 	}
 
@@ -280,7 +278,7 @@ public class SignUpObject extends GenericPageObject {
 	 * @return the SignUpObject class instance.
 	 */
 	public SignUpObject setSignUpWithYourLastName() {
-		return setSignUpWithYourLastName(data.get("SIGN_UP_WITH_YOUR_DETAILS_2"));
+		return setSignUpWithYourLastName(data.get("last_name"));
 	}
 
 	/**
@@ -288,8 +286,8 @@ public class SignUpObject extends GenericPageObject {
 	 *
 	 * @return the SignUpObject class instance.
 	 */
-	public SignUpObject setSignUpWithYourLastName(String signUpWithYourDetails2Value) {
-		signUpWithYourLastName.sendKeys(signUpWithYourDetails2Value);
+	public SignUpObject setSignUpWithYourLastName(String lastName) {
+		signUpWithYourLastName.sendKeys(lastName);
 		return this;
 	}
 
@@ -299,7 +297,7 @@ public class SignUpObject extends GenericPageObject {
 	 * @return the SignUpObject class instance.
 	 */
 	public SignUpObject setSignUpWithYourEmail() {
-		return setSignUpWithYourEmail(data.get("SIGN_UP_WITH_YOUR_DETAILS_3"));
+		return setSignUpWithYourEmail(data.get("email"));
 	}
 
 	/**
@@ -307,8 +305,8 @@ public class SignUpObject extends GenericPageObject {
 	 *
 	 * @return the SignUpObject class instance.
 	 */
-	public SignUpObject setSignUpWithYourEmail(String signUpWithYourDetails3Value) {
-		signUpWithYourEmail.sendKeys(signUpWithYourDetails3Value);
+	public SignUpObject setSignUpWithYourEmail(String email) {
+		signUpWithYourEmail.sendKeys(email);
 		return this;
 	}
 
@@ -318,7 +316,7 @@ public class SignUpObject extends GenericPageObject {
 	 * @return the SignUpObject class instance.
 	 */
 	public SignUpObject setSignUpWithYourPassword() {
-		return setSignUpWithYourPassword(data.get("SIGN_UP_WITH_YOUR_DETAILS_4"));
+		return setSignUpWithYourPassword(data.get("password"));
 	}
 
 	/**
@@ -351,17 +349,4 @@ public class SignUpObject extends GenericPageObject {
 		return this;
 	}
 
-	/**
-	 * Verify that current page URL matches the expected URL.
-	 *
-	 * @return the SignUpObject class instance.
-	 */
-	public SignUpObject verifyPageUrl() {
-		(new WebDriverWait(driver, timeout)).until(new ExpectedCondition<Boolean>() {
-			public Boolean apply(WebDriver d) {
-				return d.getCurrentUrl().contains(pageUrl);
-			}
-		});
-		return this;
-	}
 }

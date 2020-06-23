@@ -5,7 +5,7 @@ package Symphony.WebApp;
 
 import org.junit.Test;
 
-import com.symphony.framework.BrowserFactory;
+import com.symphony.framework.BrowserStrategy;
 import com.symphony.helpers.ReceiveSmsObject;
 import com.symphony.helpers.TempEmailObject;
 import com.symphony.page.ResetPasswordObject;
@@ -23,7 +23,7 @@ import org.junit.Before;
 
 public class SignUpPageTests {
 	
-	public BrowserFactory browser;
+	public BrowserStrategy browser;
 	public SignInObject signInPage;
 	public SignUpObject signUpPage;
 	public ResetPasswordObject resetPasswordPage;
@@ -31,7 +31,7 @@ public class SignUpPageTests {
 
 	@Before
 	public void preconditions() throws Exception {
-		browser = new BrowserFactory("chrome");
+		browser = new BrowserStrategy(System.getProperty("browser"));
 		webdriver = browser.getDriver();
 		signInPage = new SignInObject(webdriver);
 		signUpPage = new SignUpObject(webdriver);
