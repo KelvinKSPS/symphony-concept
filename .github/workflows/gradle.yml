@@ -25,3 +25,4 @@ jobs:
       run: chmod +x gradlew
     - name: Test with Gradle And Chrome
       run: ./gradlew build -Dbrowser="chrome" -Dheadless="true" 
+ 
