@@ -270,7 +270,7 @@ public class SignInObject extends GenericPageObject {
 	 * @return the SignInObject class instance.
 	 */
 	public boolean verifyPageUrl() {
-		this.verifyPageLoaded();
+		new WebDriverWait(super.driver, 30).until(ExpectedConditions.urlContains(pageUrl));
 		return super.getCurrentUrl().contains(pageUrl);
 	}
 
