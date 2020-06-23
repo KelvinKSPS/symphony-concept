@@ -11,6 +11,7 @@
 plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
+    id 'com.adarshr.test-logger' version '2.0.0'
 }
 
 repositories {
@@ -45,5 +46,23 @@ wrapper {
 test {
     systemProperty 'browser', System.getProperty('browser')
     systemProperty 'headless', System.getProperty('headless')
+}
+
+testlogger {
+    theme 'standard'
+    showExceptions true
+    showStackTraces true
+    showFullStackTraces false
+    showCauses true
+    slowThreshold 2000
+    showSummary true
+    showSimpleNames false
+    showPassed true
+    showSkipped true
+    showFailed true
+    showStandardStreams false
+    showPassedStandardStreams true
+    showSkippedStandardStreams true
+    showFailedStandardStreams true
 }
 
