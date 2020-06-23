@@ -275,7 +275,7 @@ public class SignInObject extends GenericPageObject {
 	}
 
 	/**
-	 * get text without line delimiters
+	 * get text without line delimiters  
 	 */
 	public String languageLabelContent() {
 		return this.languageLabel().getText().replace("\n", "");
