@@ -9,23 +9,30 @@ import com.symphony.page.SignUpObject;
  *
  */
 public class MostCommonFlows {
-	
+
 	/**
 	 * full success sign up flow for a random email
 	 */
 	public static String fullSignUpFlow(SignUpObject signUpPage, SignInObject signInPage, TempEmailObject emailPage) {
 		signUpPage.open();
 		emailPage.open();
-		
+
 		String email = emailPage.getEmail();
-		
+
 		signUpPage.setSignUpWithYourFirstName(Valid.FIRST_NAME);
 		signUpPage.setSignUpWithYourLastName(Valid.LAST_NAME);
 		signUpPage.setSignUpWithYourEmail(email);
 		signUpPage.setSignUpWithYourPassword(Valid.PASSWORD);
 		signUpPage.clickNextButton();
 		signUpPage.clickSkipButton();
-		emailPage.validateEmail(30, signInPage);
+		try {
+			emailPage.validateEmail(30, signInPage);
+		} catch (Exception ex) {
+			System.err.println(ex);
+			System.out.println("Maybe it is an issue in the email service, trying again");
+			emailPage.driver.get(emailPage.getCurrentUrl());
+			emailPage.validateEmail(30, signInPage);
+		}
 		return email;
 	}
 }

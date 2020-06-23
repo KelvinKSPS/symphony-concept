@@ -23,7 +23,7 @@ public class ChromeFactory extends GenericBrowserFactory {
 
 		this.driver = new ChromeDriver(options);
 
-		if (middleScreen) {
+		if (!System.getProperty("headless").contains("true") && middleScreen) {
 			this.setMiddleScreen();
 		}
 	}
