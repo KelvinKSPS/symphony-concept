@@ -36,4 +36,4 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Test with Gradle And Chrome
-      run: ./gradlew test -Dbrowser="chrome" -Dheadless="true"
+      run: ./gradlew build -Dbrowser="chrome" -Dheadless="true"
