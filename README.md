@@ -8,7 +8,7 @@
 * Browser/OS Strategy
 * Custom Email PIN/Confirmation Handler
 * Custom SMS Handler (ready)
-* Continuous Integration - [Click here to see latest runs](https://github.com/KelvinKSPS/symphony-concept/workflows/)
+* Continuous Integration - [Click here to see latest runs](https://github.com/KelvinKSPS/symphony-concept/actions/)
 
 #
 
