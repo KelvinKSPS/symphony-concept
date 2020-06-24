@@ -51,7 +51,8 @@ public class ResetPasswordObject extends GenericPageObject {
      * get system messages for email/captcha validation
      */
     public String getSystemMessage() {
-		return systemMessage.getText();
+    	new WebDriverWait(super.driver, 10).until(ExpectedConditions.visibilityOf(systemMessage));
+ 		return systemMessage.getText();
 	}	
 
     public ResetPasswordObject(WebDriver driver) {
