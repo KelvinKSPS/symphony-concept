@@ -70,7 +70,7 @@ It will run on chrome using headless mode.
 18 tests are automated. The report / JUnit pattern is using `Should`/`When` style.
 
 Currently this is set to show the results inline.
-For detailed result, check `build/reports/tests/test/index.html` inside the project folder.
+For detailed result, check `build/reports/tests/test/index.html` inside the project folder or inside the artifact generated after CI Tests.
 
 Example for `inline` reporting:
 
