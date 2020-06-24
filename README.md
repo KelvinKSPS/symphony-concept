@@ -4,13 +4,29 @@
 
 
 
-Symphony Project Concept - E2E Test Automation, BrowserStrategy, Email PIN/Confirmation Handler and Continuous Integration
+* E2E Test Automation
+* Browser/OS Strategy
+* Custom Email PIN/Confirmation Handler
+* Custom SMS Handler (ready)
+* Continuous Integration - [Click here to see latest runs](https://github.com/KelvinKSPS/symphony-concept/workflows/)
 
 #
 
+# Table of Contents
+
+1. [Prerequisites](#prerequisites)
+2. [Running Tests](#running-tests)
+    1. [Command Line Interfae](#command-line-interface)
+    2. [Reporting](#reporting)
+3. [Most Important Test Cases](#most-important-test-cases)
+4. [Notes](#notes)
+5. [Built With](#built-with)
+6. [Contributing / Triggering CI Tests](#contributing)
+
+# 
 ## Prerequisites
 
-What things you need to install the software and how to install them
+What things you need to install and how to install them
 
 ```
 For running locally: Java SDK 1.8 && (Linux)
@@ -20,7 +36,7 @@ For running on github: Create a PR and the tests will run automatically
 
 #
 
-## Running the tests
+## Running Tests
 
 We can run the test by using Gradle Wrapper. The tests are able to be run in Chrome (83) and Firefox. This project also supports headless mode - running automated tests without using System UI.
 
@@ -112,9 +128,9 @@ Table of priorities
 | P3            | minor        | 
 
 
-[To be updated here]
+[Click here to access the Document](https://docs.google.com/spreadsheets/d/1n6v_yfHQ5lDrcMHfSU6pgaccQP3cBnX0ZOf6QnaLjNU/edit?usp=sharing)
 
-
+#
 ## Notes
 
 * The automation supports Firefox, but the webapp under testing from symphony does not, what will fail all tests if running using Firefox;
@@ -131,6 +147,7 @@ Table of priorities
 * [Docker](docker.com) - Container Tool
 * [GitHub Actions](github.com/features/actions) - Workflow Setup / CI-CD Toolset
 
+#
 ## Contributing
 
 Feel free to create `Pull Requests` to test the CI Feature.
