@@ -16,7 +16,7 @@
 
 1. [Prerequisites](#prerequisites)
 2. [Running Tests](#running-tests)
-    1. [Command Line Interfae](#command-line-interface)
+    1. [Command Line Interface](#command-line-interface)
     2. [Reporting](#reporting)
 3. [Most Important Test Cases](#most-important-test-cases)
 4. [Notes](#notes)
@@ -25,8 +25,6 @@
 
 # 
 ## Prerequisites
-
-What things you need to install and how to install them
 
 ```
 For running locally: Java SDK 1.8 && (Linux)
