@@ -25,4 +25,9 @@ jobs:
       run: chmod +x gradlew
     - name: Test with Gradle And Chrome
       run: ./gradlew build -Dbrowser="chrome" -Dheadless="true" 
+    - name: Publish JUnit Report
+      uses: actions/upload-artifact@v2
+      with:
+        name: Build Results  
+        path: build
  
