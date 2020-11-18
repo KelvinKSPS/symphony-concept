@@ -176,7 +176,7 @@ public class SignUpObject extends GenericPageObject {
 	 */
 	public SignUpObject clickNextButton() {
 		next.click();
-		new WebDriverWait(super.driver, 5).until(ExpectedConditions.elementToBeClickable(SkipButton));
+		new WebDriverWait(super.driver, 15).until(ExpectedConditions.elementToBeClickable(SkipButton));
 		return this;
 	}
 

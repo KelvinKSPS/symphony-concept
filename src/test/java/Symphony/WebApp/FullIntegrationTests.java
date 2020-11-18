@@ -39,7 +39,7 @@ public class FullIntegrationTests {
 		
 	}
 	
-	//@Test
+	@Test
 	public void Should_CreateAccount_When_FillingAllFieldsAndValidateEmailAndSMS() throws InterruptedException {
 		signUpPage = new SignUpObject(webdriver);
 		emailPage = new TempEmailObject(auxWebdriver);
