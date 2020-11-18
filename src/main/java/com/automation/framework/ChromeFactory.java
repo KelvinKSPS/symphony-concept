@@ -1,4 +1,4 @@
-package com.symphony.framework;
+package com.automation.framework;
 
 import java.awt.Toolkit;
 
@@ -16,14 +16,15 @@ public class ChromeFactory extends GenericBrowserFactory {
 				System.getProperty("user.dir") + "/resources/" + this.getOs() + "/chrome/chromedriver");
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("disable-notifications");
-
-		if (System.getProperty("headless").contains("true")) {
+		String headless = System.getProperty("headless") != null ? System.getProperty("headless") : "false"; 
+		
+		if (headless.contains("true")) {
 			options.addArguments("headless");
 		}
 
 		this.driver = new ChromeDriver(options);
 
-		if (!System.getProperty("headless").contains("true") && middleScreen) {
+		if (!headless.contains("true") && middleScreen) {
 			this.setMiddleScreen();
 		}
 	}

@@ -1,4 +1,4 @@
-package com.symphony.helpers;
+package com.automation.helpers;
 
 public class Constants {
 

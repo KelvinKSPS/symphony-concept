@@ -1,5 +1,6 @@
 package Symphony.WebApp;
 
+import static com.automation.helpers.MostCommonFlows.*;
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -7,14 +8,13 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
-import com.symphony.framework.BrowserStrategy;
-import com.symphony.helpers.ReceiveSmsObject;
-import com.symphony.helpers.TempEmailObject;
-import com.symphony.helpers.Constants.*;
-import com.symphony.page.ResetPasswordObject;
-import com.symphony.page.SignInObject;
-import com.symphony.page.SignUpObject;
-import static com.symphony.helpers.MostCommonFlows.*;
+import com.automation.framework.BrowserStrategy;
+import com.automation.helpers.ReceiveSmsObject;
+import com.automation.helpers.TempEmailObject;
+import com.automation.helpers.Constants.*;
+import com.automation.symphony.ResetPasswordObject;
+import com.automation.symphony.SignInObject;
+import com.automation.symphony.SignUpObject;
 
 public class FullIntegrationTests {
 	
@@ -39,7 +39,7 @@ public class FullIntegrationTests {
 		
 	}
 	
-	@Test
+	//@Test
 	public void Should_CreateAccount_When_FillingAllFieldsAndValidateEmailAndSMS() throws InterruptedException {
 		signUpPage = new SignUpObject(webdriver);
 		emailPage = new TempEmailObject(auxWebdriver);

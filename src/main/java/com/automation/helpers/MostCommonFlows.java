@@ -1,8 +1,8 @@
-package com.symphony.helpers;
+package com.automation.helpers;
 
-import com.symphony.helpers.Constants.Valid;
-import com.symphony.page.SignInObject;
-import com.symphony.page.SignUpObject;
+import com.automation.helpers.Constants.Valid;
+import com.automation.symphony.SignInObject;
+import com.automation.symphony.SignUpObject;
 
 /**
  * Most used flows from the automation to be stored here as static methods

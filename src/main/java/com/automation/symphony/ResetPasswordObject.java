@@ -1,4 +1,4 @@
-package com.symphony.page;
+package com.automation.symphony;
 
 import java.util.List;
 import java.util.Map;
@@ -10,8 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.symphony.framework.GenericPageObject;
-import com.symphony.helpers.TempEmailObject;
+import com.automation.framework.GenericPageObject;
+import com.automation.helpers.TempEmailObject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;

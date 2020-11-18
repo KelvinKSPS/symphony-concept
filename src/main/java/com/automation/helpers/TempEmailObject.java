@@ -1,4 +1,4 @@
-package com.symphony.helpers;
+package com.automation.helpers;
 
 import java.util.ArrayList;
 
@@ -11,9 +11,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.symphony.framework.GenericPageObject;
-import com.symphony.page.SignInObject;
-import com.symphony.page.SignUpObject;
+import com.automation.framework.GenericPageObject;
+import com.automation.symphony.SignInObject;
+import com.automation.symphony.SignUpObject;
 
 public class TempEmailObject extends GenericPageObject {
 

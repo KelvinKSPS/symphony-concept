@@ -5,17 +5,17 @@ package Symphony.WebApp;
 
 import org.junit.Test;
 
-import com.symphony.framework.BrowserStrategy;
-import com.symphony.helpers.ReceiveSmsObject;
-import com.symphony.helpers.TempEmailObject;
-import com.symphony.page.ResetPasswordObject;
-import com.symphony.page.SignInObject;
-import com.symphony.page.SignUpObject;
-import static com.symphony.helpers.Constants.Valid;
+import com.automation.framework.BrowserStrategy;
+import com.automation.helpers.ReceiveSmsObject;
+import com.automation.helpers.TempEmailObject;
+import com.automation.symphony.ResetPasswordObject;
+import com.automation.symphony.SignInObject;
+import com.automation.symphony.SignUpObject;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static com.automation.helpers.Constants.Valid;
 import static org.junit.Assert.*;
 
 import org.junit.After;

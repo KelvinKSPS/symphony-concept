@@ -1,4 +1,4 @@
-package com.symphony.framework;
+package com.automation.framework;
 
 import org.openqa.selenium.WebDriver;
 

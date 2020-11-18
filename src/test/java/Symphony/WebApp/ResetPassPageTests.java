@@ -5,10 +5,11 @@ package Symphony.WebApp;
 
 import org.junit.Test;
 
-import com.symphony.framework.BrowserStrategy;
-import com.symphony.helpers.Constants.Valid;
-import com.symphony.page.ResetPasswordObject;
-import com.symphony.page.SignInObject;
+import com.automation.framework.BrowserStrategy;
+import com.automation.helpers.Constants.Valid;
+import com.automation.symphony.ResetPasswordObject;
+import com.automation.symphony.SignInObject;
+
 import org.openqa.selenium.WebDriver;
 
 import static org.junit.Assert.*;
