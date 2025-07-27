@@ -10,9 +10,10 @@
 * Custom SMS Handler (ready)
 * Continuous Integration - [Click here to see latest runs](https://github.com/KelvinKSPS/symphony-concept/actions/)
 
-#
+# 
 
 # Table of Contents
+
 
 1. [Prerequisites](#prerequisites)
 2. [Running Tests](#running-tests)
